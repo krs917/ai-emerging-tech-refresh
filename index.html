@@ -21,7 +21,7 @@
   nav a{color:var(--navy);text-decoration:none;font-weight:600;font-size:.92rem;padding:8px 14px;border-radius:8px}
   nav a:hover,nav a.active{background:var(--light);color:var(--gold-d)}
   main{max-width:1080px;margin:0 auto;padding:0 20px 80px}
-  section{padding-top:48px}
+  section{padding-top:48px;scroll-margin-top:64px}
   h2.sec{color:var(--navy);font-size:1.7rem;border-bottom:3px solid var(--gold);display:inline-block;padding-bottom:4px;margin-bottom:18px}
   p.lead{color:var(--grey);max-width:820px;margin-bottom:16px}
   .cards4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0}
@@ -75,12 +75,42 @@
   #mod .navbtns button{border:1px solid var(--line);background:#fff;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:600;color:var(--navy)}
   #mod .navbtns button:hover{background:var(--light)}
   /* assessment */
+  .tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0}
+  .tblwrap table{margin:0;min-width:560px}
   table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.92rem}
   th{background:var(--navy);color:#fff;text-align:left;padding:9px 12px}
   td{border:1px solid var(--line);padding:8px 12px}
   tr:nth-child(even) td{background:var(--light)}
   footer{background:var(--navy-d);color:#c9d4e8;text-align:center;padding:26px;font-size:.85rem}
   footer a{color:#f0d787}
+  /* Mobile */
+  @media(max-width:640px){
+    header.hero{padding:34px 16px 26px}
+    header.hero .tag{font-size:.95rem}
+    .meta{gap:6px;margin-top:16px}
+    .meta span{font-size:.74rem;padding:4px 10px}
+    nav{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    nav::-webkit-scrollbar{display:none}
+    nav a{white-space:nowrap;padding:8px 10px;font-size:.85rem}
+    main{padding:0 14px 60px}
+    section{padding-top:34px;scroll-margin-top:56px}
+    h2.sec{font-size:1.35rem}
+    p.lead{font-size:.95rem}
+    .tabs{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .tabs::-webkit-scrollbar{display:none}
+    .tabs button{white-space:nowrap;flex:0 0 auto;padding:9px 12px;font-size:.82rem}
+    .arcpanel{padding:16px 14px}
+    .arcpanel h3{font-size:1.15rem}
+    .mgrid{grid-template-columns:repeat(2,1fr)}
+    .mcard{padding:9px 10px}
+    .mcard:hover{transform:none;box-shadow:none}
+    .mcard:active{background:var(--light)}
+    #ovl{padding:10px}
+    #mod{padding:22px 18px 18px;max-height:92vh;border-radius:12px}
+    #mod h3{font-size:1.1rem;padding-right:30px}
+    #mod .navbtns button{padding:10px 16px}
+    .stds{padding:14px 16px}
+  }
 </style>
 </head>
 <body>
@@ -151,7 +181,7 @@
 <section id="assessment">
   <h2 class="sec">Assessment</h2>
   <p class="lead">Assessment measures <b>fluency, not familiarity</b>. Formative work makes AI practice visible (logs, prompt labs, reflections); each arc summative demands transfer; the capstone assesses all four Ds directly.</p>
-  <table>
+  <div class="tblwrap"><table>
     <tr><th>Arc</th><th>Summative</th><th>Primary 4D evidence</th><th>AILit domain</th></tr>
     <tr><td>1</td><td>Tech &amp; Society Snapshot</td><td>4D vocabulary applied to a real technology</td><td>Engage</td></tr>
     <tr><td>2</td><td>“Explain the Machine” data story</td><td>Description↔Discernment loop documentation</td><td>Engage, Manage</td></tr>
@@ -159,14 +189,14 @@
     <tr><td>4</td><td>Emerging Tech Case Study</td><td>Source-quality log; evidence grading</td><td>Engage</td></tr>
     <tr><td>5</td><td>Digital Identity Package</td><td>Disclosure statement; verification practice</td><td>Manage</td></tr>
     <tr><td>6</td><td>Future Trends Challenge (capstone)</td><td>All 4Ds via log + chart + ethics review</td><td>Create, Design</td></tr>
-  </table>
-  <table>
+  </table></div>
+  <div class="tblwrap"><table>
     <tr><th>Category</th><th>Weight</th></tr>
     <tr><td>Formative work (reflections, prompt labs, quizzes, collaboration logs)</td><td>25%</td></tr>
     <tr><td>Arc summative projects (5)</td><td>40%</td></tr>
     <tr><td>Future Trends Challenge (capstone: solution 30 / ethics 20 / AI fluency 30 / pitch 20)</td><td>25%</td></tr>
     <tr><td>Engagement, collaboration &amp; reflection</td><td>10%</td></tr>
-  </table>
+  </table></div>
   <p class="lead"><b>Growth evidence:</b> a pre/post 4D self-assessment (Meeting 1 baseline vs. Meeting 36 close) documents semester growth for students, parents, and program review.</p>
 </section>
 </main>
