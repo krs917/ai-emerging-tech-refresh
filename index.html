@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI and Emerging Technologies — Course Design</title>
+<style>
+  :root{
+    --navy:#1B3A6B; --navy-d:#12294e; --gold:#C9A227; --gold-d:#8A6D14;
+    --ink:#222; --grey:#595959; --light:#F2F5FA; --line:#dde4ee;
+    --a1:#1B3A6B; --a2:#2E6B4F; --a3:#8A4B1B; --a4:#5B3A8A; --a5:#8A1B3A; --a6:#C9A227;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);line-height:1.55;background:#fff}
+  header.hero{background:linear-gradient(135deg,var(--navy-d),var(--navy) 60%,#28508f);color:#fff;padding:56px 24px 40px;text-align:center}
+  header.hero h1{font-size:clamp(1.8rem,4vw,3rem);letter-spacing:-.5px}
+  header.hero .tag{color:#d9e2f2;font-size:1.05rem;margin-top:10px;max-width:760px;margin-left:auto;margin-right:auto}
+  .meta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+  .meta span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:6px 14px;border-radius:999px;font-size:.85rem}
+  nav{position:sticky;top:0;background:#fff;border-bottom:2px solid var(--line);z-index:50;display:flex;justify-content:center;gap:4px;flex-wrap:wrap;padding:8px}
+  nav a{color:var(--navy);text-decoration:none;font-weight:600;font-size:.92rem;padding:8px 14px;border-radius:8px}
+  nav a:hover,nav a.active{background:var(--light);color:var(--gold-d)}
+  main{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+  section{padding-top:48px}
+  h2.sec{color:var(--navy);font-size:1.7rem;border-bottom:3px solid var(--gold);display:inline-block;padding-bottom:4px;margin-bottom:18px}
+  p.lead{color:var(--grey);max-width:820px;margin-bottom:16px}
+  .cards4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0}
+  .dcard{background:var(--light);border:1px solid var(--line);border-radius:12px;padding:18px;border-top:4px solid var(--gold)}
+  .dcard h3{color:var(--navy);font-size:1.05rem;margin-bottom:6px}
+  .dcard .q{font-style:italic;color:var(--gold-d);font-size:.9rem;margin-bottom:8px}
+  .dcard p{font-size:.9rem;color:var(--grey)}
+  .modal-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:14px 0}
+  .mode{border:1px solid var(--line);border-radius:12px;padding:16px}
+  .mode h4{color:var(--navy);margin-bottom:4px}
+  .mode small{color:var(--grey)}
+  .stds{background:var(--light);border-radius:12px;padding:18px 22px;margin-top:20px}
+  .stds li{margin:6px 0 6px 18px;font-size:.95rem}
+  /* Arc explorer */
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:0}
+  .tabs button{border:1px solid var(--line);background:#fff;padding:10px 14px;border-radius:10px 10px 0 0;font-weight:700;cursor:pointer;font-size:.88rem;color:var(--grey);border-bottom:none}
+  .tabs button.on{color:#fff}
+  .arcpanel{border:1px solid var(--line);border-radius:0 12px 12px 12px;padding:24px}
+  .arcpanel .arc-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;align-items:baseline;margin-bottom:8px}
+  .arcpanel h3{font-size:1.35rem}
+  .pill{display:inline-block;background:var(--light);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.78rem;color:var(--grey);margin:2px 4px 2px 0}
+  .arccols{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:16px}
+  @media(max-width:760px){.arccols{grid-template-columns:1fr}}
+  .arccols h4{color:var(--navy);font-size:.95rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+  .arccols ul{list-style:none}
+  .arccols li{padding:5px 0 5px 22px;position:relative;font-size:.93rem}
+  .arccols li::before{content:"▸";position:absolute;left:4px;color:var(--gold)}
+  .summ{margin-top:18px;background:var(--light);border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:14px 18px;font-size:.95rem}
+  /* Course map */
+  .maplegend{display:flex;gap:14px;flex-wrap:wrap;margin:10px 0 18px;font-size:.82rem;color:var(--grey)}
+  .maplegend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+  .arcband{margin-bottom:26px}
+  .arcband h3{font-size:1.05rem;color:var(--navy);margin-bottom:10px}
+  .mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .mcard{border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;background:#fff;transition:transform .12s, box-shadow .12s;border-top-width:4px}
+  .mcard:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(27,58,107,.14)}
+  .mcard .n{font-size:.72rem;font-weight:800;color:var(--grey)}
+  .mcard .t{font-size:.84rem;font-weight:700;color:var(--navy);line-height:1.25;margin-top:2px}
+  .mcard .s{font-size:.72rem;color:var(--gold-d);margin-top:4px;font-weight:600}
+  /* modal */
+  #ovl{position:fixed;inset:0;background:rgba(10,20,40,.55);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
+  #ovl.show{display:flex}
+  #mod{background:#fff;border-radius:16px;max-width:640px;width:100%;max-height:85vh;overflow:auto;padding:28px 30px;position:relative}
+  #mod .n{font-size:.8rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+  #mod h3{color:var(--navy);font-size:1.3rem;margin:4px 0 14px}
+  #mod .blk{margin-bottom:12px}
+  #mod .blk b{color:var(--navy);display:block;font-size:.82rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
+  #mod .blk div{font-size:.95rem}
+  #mod button.x{position:absolute;top:14px;right:16px;border:none;background:var(--light);width:34px;height:34px;border-radius:50%;font-size:1.05rem;cursor:pointer;color:var(--grey)}
+  #mod .navbtns{display:flex;justify-content:space-between;margin-top:18px}
+  #mod .navbtns button{border:1px solid var(--line);background:#fff;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:600;color:var(--navy)}
+  #mod .navbtns button:hover{background:var(--light)}
+  /* assessment */
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.92rem}
+  th{background:var(--navy);color:#fff;text-align:left;padding:9px 12px}
+  td{border:1px solid var(--line);padding:8px 12px}
+  tr:nth-child(even) td{background:var(--light)}
+  footer{background:var(--navy-d);color:#c9d4e8;text-align:center;padding:26px;font-size:.85rem}
+  footer a{color:#f0d787}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>AI and Emerging Technologies</h1>
+  <p class="tag">A redesigned semester course where students move from using AI to being fluent with it — culminating in the Future Trends Challenge.</p>
+  <div class="meta">
+    <span>Grades 10–12</span><span>Semester · every other day</span><span>36 meetings · 6 arcs</span>
+    <span>La Salle College High School</span><span>2026 Redesign</span>
+  </div>
+</header>
+
+<nav id="topnav">
+  <a href="#overview">Overview</a>
+  <a href="#framework">The Framework</a>
+  <a href="#arcs">Arc Explorer</a>
+  <a href="#map">Course Map</a>
+  <a href="#assessment">Assessment</a>
+</nav>
+
+<main>
+<section id="overview">
+  <h2 class="sec">Course Overview</h2>
+  <p class="lead">This course invites students to explore artificial intelligence and the technologies shaping the future of work, society, and human interaction. Building on 9th-grade digital foundations, it develops <b>AI Fluency</b> — working with AI effectively, efficiently, ethically, and safely. Students open the black box of machine learning, design and red-team a simple AI agent, evaluate the 2026 technology landscape with evidence rather than hype, and build an authentic professional digital identity.</p>
+  <p class="lead">The redesign consolidates twelve short units into <b>six deeper arcs</b>, threads Anthropic's AI Fluency framework through every one, and merges the two former culminating projects into a single seven-meeting capstone pitched to an authentic panel.</p>
+  <p class="lead"><b>Lasallian connection:</b> grounded in the mission of faith and discovery, students learn to treat innovation as understanding and stewardship — enhancing the human experience with integrity, wisdom, and hope. The course's emphasis on Diligence is a direct expression of this mission.</p>
+</section>
+
+<section id="framework">
+  <h2 class="sec">The Course Spine: AI Fluency</h2>
+  <p class="lead">Four competencies for professional-grade human-AI collaboration, practiced in every arc and assessed directly in the capstone.</p>
+  <div class="cards4">
+    <div class="dcard"><h3>Delegation</h3><p class="q">What should AI do — and what should stay human?</p><p>Task analysis, goal setting, deciding whether, when, and how to engage AI.</p></div>
+    <div class="dcard"><h3>Description</h3><p class="q">How do I communicate what I need?</p><p>Clear prompts, rich context, specified formats and constraints.</p></div>
+    <div class="dcard"><h3>Discernment</h3><p class="q">Is this output any good?</p><p>Evaluating accuracy, quality, bias, and fit; iterating deliberately.</p></div>
+    <div class="dcard"><h3>Diligence</h3><p class="q">Am I being responsible?</p><p>Verifying claims, disclosing AI use, protecting privacy, owning the product.</p></div>
+  </div>
+  <div class="modal-row">
+    <div class="mode"><h4>Automation</h4><small>AI performs the task. Signature move: precise specification.</small></div>
+    <div class="mode"><h4>Augmentation</h4><small>Human and AI as thinking partners. Signature move: iterative dialogue.</small></div>
+    <div class="mode"><h4>Agency</h4><small>AI acts independently on your behalf — the defining shift of 2026. Signature move: guardrails and oversight.</small></div>
+  </div>
+  <div class="stds">
+    <b style="color:var(--navy)">Standards alignment</b>
+    <ul>
+      <li><b>ISTE — Knowledge Constructor:</b> students critically curate global reports (WEF, Microsoft WorkLab, MIT Technology Review) into visualizations, forecasts, and solutions.</li>
+      <li><b>OECD/EC AILit Framework (2026):</b> arcs map to all four domains — Engage, Create, Manage, and Design with AI — the framework behind the PISA 2029 AI-literacy assessment.</li>
+      <li><b>Anthropic AI Fluency Framework:</b> the 4Ds threaded through every arc, graded via collaboration logs and delegation charts.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="arcs">
+  <h2 class="sec">Arc Explorer</h2>
+  <p class="lead">Six arcs, each ending in a summative project. Click a tab to explore.</p>
+  <div class="tabs" id="tabs"></div>
+  <div class="arcpanel" id="arcpanel"></div>
+</section>
+
+<section id="map">
+  <h2 class="sec">Course Map — 36 Meetings</h2>
+  <p class="lead">Click any meeting for its objective, anchor activity, and assessment check. Flex: at 37 meetings add a buffer before M23 or M36; at 35, merge M27–28.</p>
+  <div class="maplegend" id="legend"></div>
+  <div id="mapwrap"></div>
+</section>
+
+<section id="assessment">
+  <h2 class="sec">Assessment</h2>
+  <p class="lead">Assessment measures <b>fluency, not familiarity</b>. Formative work makes AI practice visible (logs, prompt labs, reflections); each arc summative demands transfer; the capstone assesses all four Ds directly.</p>
+  <table>
+    <tr><th>Arc</th><th>Summative</th><th>Primary 4D evidence</th><th>AILit domain</th></tr>
+    <tr><td>1</td><td>Tech &amp; Society Snapshot</td><td>4D vocabulary applied to a real technology</td><td>Engage</td></tr>
+    <tr><td>2</td><td>“Explain the Machine” data story</td><td>Description↔Discernment loop documentation</td><td>Engage, Manage</td></tr>
+    <tr><td>3</td><td>Agent demo + Delegation Brief</td><td>Delegation reasoning; guardrail design</td><td>Create</td></tr>
+    <tr><td>4</td><td>Emerging Tech Case Study</td><td>Source-quality log; evidence grading</td><td>Engage</td></tr>
+    <tr><td>5</td><td>Digital Identity Package</td><td>Disclosure statement; verification practice</td><td>Manage</td></tr>
+    <tr><td>6</td><td>Future Trends Challenge (capstone)</td><td>All 4Ds via log + chart + ethics review</td><td>Create, Design</td></tr>
+  </table>
+  <table>
+    <tr><th>Category</th><th>Weight</th></tr>
+    <tr><td>Formative work (reflections, prompt labs, quizzes, collaboration logs)</td><td>25%</td></tr>
+    <tr><td>Arc summative projects (5)</td><td>40%</td></tr>
+    <tr><td>Future Trends Challenge (capstone: solution 30 / ethics 20 / AI fluency 30 / pitch 20)</td><td>25%</td></tr>
+    <tr><td>Engagement, collaboration &amp; reflection</td><td>10%</td></tr>
+  </table>
+  <p class="lead"><b>Growth evidence:</b> a pre/post 4D self-assessment (Meeting 1 baseline vs. Meeting 36 close) documents semester growth for students, parents, and program review.</p>
+</section>
+</main>
+
+<div id="ovl"><div id="mod">
+  <button class="x" onclick="closeModal()">✕</button>
+  <div class="n" id="m-n"></div><h3 id="m-t"></h3>
+  <div class="blk"><b>Objective</b><div id="m-o"></div></div>
+  <div class="blk"><b>Anchor activity</b><div id="m-a"></div></div>
+  <div class="blk"><b>Check</b><div id="m-c"></div></div>
+  <div class="navbtns"><button onclick="step(-1)">← Previous</button><button onclick="step(1)">Next →</button></div>
+</div></div>
+
+<footer>
+  AI and Emerging Technologies · 2026 Course Redesign · K. Schollin, La Salle College High School<br>
+  Frameworks: Anthropic AI Fluency (4Ds) · OECD/EC AILit (2026) · ISTE Standards for Students
+</footer>
+
+<script>
+const ARCS=[
+ {name:"Living in the Age of AI",range:"Meetings 1–5",color:"var(--a1)",fourD:"All 4Ds introduced",ailit:"Engage with AI",
+  over:"Sets the intellectual and cultural tone. Students situate the AI moment in a longer arc of technological change, learn the 4D vocabulary the whole course uses, and experience automation vs. augmentation vs. agency firsthand.",
+  eqs:["What world are you graduating into, and who is shaping it?","What's the difference between using AI and being fluent with it?","What should machines do, and what should stay human?"],
+  objs:["Describe how an emerging technology reshapes work, communication, or daily life","Define the 4Ds with examples","Classify human-AI interactions by modality and justify it"],
+  summ:"Tech & Society Snapshot — a one-page analysis of one technology: impact, stakeholders, one ethical tension, one 4D-framed observation."},
+ {name:"How AI Actually Works",range:"Meetings 6–11",color:"var(--a2)",fourD:"Description & Discernment",ailit:"Engage · Manage",
+  over:"A full rebuild of the old AI/ethics and big data/ML units. Students open the black box: how models learn from data, why they fail confidently, and how bias enters through data and design. The Description↔Discernment loop is practiced as the core skill; ethics is woven through every meeting.",
+  eqs:["How does a machine 'learn' — and what can't it learn?","Why do intelligent-seeming systems fail confidently?","Where does bias come from, and who is accountable?"],
+  objs:["Explain training vs. programming and the data → model → prediction pipeline","Demonstrate the Description↔Discernment loop with documentation","Trace a real bias case to data or design choices","Communicate one ML concept to a general audience"],
+  summ:"“Explain the Machine” — an infographic or data story teaching one concept accurately, naming one bias or failure risk. Accuracy graded as hard as design."},
+ {name:"Working with AI",range:"Meetings 12–17",color:"var(--a3)",fourD:"Delegation",ailit:"Create with AI",
+  over:"The signature new arc. Agentic AI — systems that plan, use tools, and act — is the defining 2026 development, and delegation is its core human skill. Students study the future-of-work evidence, then design, build or simulate, red-team, and demo a simple AI agent, defending every delegation decision.",
+  eqs:["When you can delegate almost anything, what should you keep?","What does an agent need to succeed — and what stops it from causing harm?","Which of your future skills rise in value in an agentic world?"],
+  objs:["Distinguish automation, augmentation, and agency with examples","Produce a defensible delegation chart for a real task","Design an agent spec: goal, instructions, tools, guardrails","Red-team an agent and document failure modes","Synthesize workforce reports into a personal skills forecast"],
+  summ:"Agent Demo + Delegation Brief — a working (or faithfully simulated) agent plus a brief defending what was delegated, what stayed human, and why."},
+ {name:"The 2026 Tech Landscape",range:"Meetings 18–23",color:"var(--a4)",fourD:"Discernment",ailit:"Engage with AI",
+  over:"The old blockchain/AR-VR/IoT units rebuilt into one evidence-driven survey. Students learn a discernment toolkit — maturity, evidence, incentives — and apply it to spatial computing, intelligent systems, digital trust and post-quantum security, and a self-chosen WEF Top 10 technology. Blockchain is taught honestly: a hype-cycle case study that left behind real cryptographic infrastructure.",
+  eqs:["How do you tell a transformative technology from a well-funded story?","What happens when computing leaves the screen and enters the physical world?","How will we verify anything — identity, ownership, truth — in the years ahead?"],
+  objs:["Evaluate a technology's maturity with a hype-cycle/evidence framework","Explain spatial computing, intelligent systems, and post-quantum cryptography conceptually","Conduct AI-assisted research with a graded source-quality log","Deliver a balanced case study with a defended five-year forecast"],
+  summ:"Emerging Tech Case Study — team multimedia presentation: mechanism, stakeholders, evidence-graded maturity, one ethical tension, five-year forecast."},
+ {name:"Truth, Media & Identity",range:"Meetings 24–29",color:"var(--a5)",fourD:"Diligence",ailit:"Manage AI",
+  over:"Media literacy and digital brand refreshed around Diligence: responsibility for what we consume, create, and claim. Students verify synthetic media, audit the algorithmic feeds shaping their attention, adopt professional AI-disclosure norms — then build the positive counterpart: an authentic professional identity and portfolio from a semester of real artifacts.",
+  eqs:["How do you know what's real — and how sure can you be?","Who decides what you see, and what is it doing to what you believe?","What does it mean to present yourself honestly in an AI-saturated world?"],
+  objs:["Apply a verification toolkit (lateral reading, provenance, reverse search)","Analyze how recommender systems shape attention and belief","Write a personal AI-use statement reflecting professional norms","Produce a curated portfolio and professional profile"],
+  summ:"Digital Identity Package — curated portfolio (3–4 refined artifacts), LinkedIn-style profile or digital resume draft, and a Diligence reflection."},
+ {name:"Future Trends Challenge",range:"Meetings 30–36",color:"var(--a6)",fourD:"All 4Ds assessed",ailit:"Create · Design",
+  over:"The two former culminating projects merged into one seven-meeting capstone. Teams identify a real problem, ground it in trend evidence, design a responsible solution, and pitch to an authentic panel of faculty, industry, and alumni. AI is a documented collaborator throughout — the collaboration log and delegation chart are graded artifacts, making this the course's summative assessment of AI Fluency itself.",
+  eqs:["What problem do you care about enough to defend for seven meetings?","What makes a technology-driven solution responsible — and who says so?","Can you show your work: what did AI do, what did you do, and why that split?"],
+  objs:["Define a real problem with evidence and stakeholder empathy","Design a feasible solution and pass a structured ethics review","Use AI fluently with a documented log and delegation chart","Deliver a persuasive, honest pitch and defend it under questioning"],
+  summ:"Future Trends Challenge — team pitch to an authentic panel, weighted: Solution 30% · Responsibility & Ethics 20% · AI Fluency 30% · Pitch & Defense 20%."}
+];
+const MEETINGS=[
+ [1,0,"Course Launch: The World You're Graduating Into","Frame the semester; establish AI-use norms","Tech-timeline gallery walk (1996 → 2026); syllabus & AI policy walkthrough; baseline survey: how do you use AI now?","Baseline survey + intro discussion post"],
+ [2,0,"Technology as a Societal Force","Analyze how emerging tech reshapes work, communication, and daily life","Case carousel (work, health, media, energy); first look at WEF Top 10 Emerging Technologies","Exit ticket: one technology, one ripple effect"],
+ [3,0,"What Is AI Fluency? The 4D Framework","Define the 4Ds; distinguish fluency from casual use","Live demo: same task done badly vs. fluently; 4D anchor chart","4D matching + scenario quiz (low stakes)"],
+ [4,0,"Three Modalities: Automation, Augmentation, Agency","Identify the three interaction modes and their signature moves","Lab: one task in automation mode vs. augmentation mode; teacher demo of an AI agent","Lab reflection: which mode fit the task, and why?"],
+ [5,0,"Arc Summative: Tech & Society Snapshot","Apply 4D vocabulary to a real technology's societal impact","One-page analysis (impact, stakeholders, ethical tension) + 60-second stand-ups","Tech & Society Snapshot (summative)"],
+ [6,1,"Machine Learning vs. Programming","Explain how models learn from data rather than follow rules","Teachable Machine lab: train an image classifier, then break it with edge cases","Lab debrief: why did the model fail?"],
+ [7,1,"Big Data: The Fuel of AI","Trace where training data comes from; evaluate quality and privacy","Dataset autopsy: sources, labels, gaps; data-privacy scenarios","Quick-write: what your data trail says about you"],
+ [8,1,"Inside LLMs (and World Models)","Describe token prediction and hallucination; preview AI world models","Token-prediction game (human LLM); hallucination hunt: catch a confident error","Hallucination hunt log"],
+ [9,1,"The Description ↔ Discernment Loop","Iterate prompts deliberately; evaluate outputs against a rubric","Prompt lab: three rounds of describe → assess → refine; co-build the class output-quality rubric","Before/after prompt pair + evaluation notes"],
+ [10,1,"Algorithmic Bias & AI Ethics","Analyze real bias cases; connect to data and design choices","Case studies (facial recognition, lending, moderation); AI Bill of Rights jigsaw","Discussion board: who is accountable?"],
+ [11,1,"Arc Summative: “Explain the Machine”","Communicate one ML concept and its bias risk to a general audience","Studio: infographic or data story (Canva/Adobe) explaining one concept from the arc","“Explain the Machine” data story (summative)"],
+ [12,2,"The Rise of AI Agents","Define agentic AI: systems that perceive, reason, and act with tools","Demos of current agents; map onto the Agency modality; risk brainstorm","Exit ticket: automation vs. agency — what changed?"],
+ [13,2,"Delegation: What Stays Human?","Decompose tasks and decide what to delegate","Task-analysis protocol on three real tasks; 'keep it human' criteria debate","Delegation decision chart (formative)"],
+ [14,2,"Future of Work: Reading the Reports","Extract skill trends from workforce reports","Jigsaw: WEF Future of Jobs, Microsoft WorkLab, Accenture Technology Vision","Report synthesis: three skills rising, two fading"],
+ [15,2,"Agent Design Lab I","Design a simple agent: goal, instructions, tools, boundaries","Teams draft an agent spec for a genuinely useful task; teacher spec review","Agent spec v1"],
+ [16,2,"Agent Design Lab II: Test & Refine","Test agent behavior; identify failure modes; add guardrails","Build/simulate the agent; red-team a partner team's agent; log failures and fixes","Red-team findings log"],
+ [17,2,"Arc Summative: Agent Demo + Delegation Brief","Justify delegation choices and demonstrate a working design","5-minute demos; Delegation Brief: what the agent does, what stayed human, why","Agent demo + Delegation Brief (summative)"],
+ [18,3,"Spatial Computing & Extended Reality","Evaluate how AR/VR evolved into spatial computing","Device demos or video case studies; hype-vs-reality T-chart","Use-case evaluation card"],
+ [19,3,"IoT & Intelligent Systems","Explain sensor-to-system architecture; analyze smart infrastructure","Design sprint: instrument the school with sensors — what, who sees it, who owns it; everything-to-grid energy case","Sprint poster + data-ownership question"],
+ [20,3,"Digital Trust: Blockchain to Post-Quantum","Assess how societies verify identity, ownership, and truth online","Blockchain's rise and reality check; lattice-based cryptography; content provenance (C2PA) demo","Concept check quiz"],
+ [21,3,"WEF Top 10 Jigsaw: Claim Your Technology","Research one current emerging technology in depth","Teams claim a WEF Top 10 technology; AI-assisted research with documented source evaluation","Research organizer + source-quality log"],
+ [22,3,"Hype vs. Reality: Discernment Workday","Evaluate evidence and maturity of an emerging technology","Hype-cycle framework; evidence-grading protocol; draft + peer feedback","Draft + peer feedback form"],
+ [23,3,"Arc Summative: Case Study Presentations","Communicate a balanced, evidence-based technology assessment","Multimedia presentations: mechanism, stakeholders, maturity evidence, ethical tension, five-year forecast","Emerging Tech Case Study (summative)"],
+ [24,4,"Synthetic Media & Deepfakes","Detect and verify synthetic content; understand provenance","Real-or-synthetic gauntlet; verification toolkit: reverse search, provenance, lateral reading","Verification challenge score + method notes"],
+ [25,4,"Algorithmic Feeds & the Attention Economy","Analyze how recommender systems shape belief and behavior","Feed audit: trace why you saw what you saw; filter-bubble mapping","Feed audit reflection"],
+ [26,4,"Diligence in Practice: Disclosure & Integrity","Apply professional norms for AI disclosure and accountability","Case dilemmas (school, journalism, hiring); draft a personal AI-use statement","Personal AI-use statement (formative)"],
+ [27,4,"Your Digital Brand","Audit online presence; plan an authentic professional identity","Self-audit; LinkedIn and digital-resume anatomy; AI-assisted-but-authentic drafting rules","Brand audit + goals sheet"],
+ [28,4,"Portfolio Studio","Produce professional portfolio artifacts","Build portfolio entries from arc summatives; draft LinkedIn profile or digital resume; peer review","Portfolio draft"],
+ [29,4,"Arc Summative: Digital Identity Package","Publish a curated, professional digital identity","Finalize portfolio + profile/resume draft + media-literacy reflection","Digital Identity Package (summative)"],
+ [30,5,"Challenge Launch","Form teams; select a real-world problem worth solving","Challenge brief unveiled; team charters; problem marketplace; empathy interviews planned","Team charter + problem statement"],
+ [31,5,"Research Sprint","Ground the problem in trend evidence","Evidence gathering from course reports + new sources; AI as documented research partner","Evidence board + AI collaboration log entry"],
+ [32,5,"Solution Design & Ethics Review","Ideate and stress-test a responsible solution","Ideation protocol; feasibility matrix; structured ethics review (stakeholders, bias, privacy, stewardship)","Solution one-pager + ethics review form"],
+ [33,5,"Build Sprint","Prototype the solution and its evidence base","Mockups/prototypes; data visualization of trend evidence; delegation charts govern division of labor","Prototype checkpoint"],
+ [34,5,"Pitch Craft","Construct a persuasive, honest pitch","Pitch structure workshop; slide/story design; timed practice with peer rubric scoring","Practice pitch + peer scores"],
+ [35,5,"Dress Rehearsal","Refine based on feedback; finalize documentation","Full run-through; AI collaboration log and delegation chart due; panel logistics","Final materials submitted"],
+ [36,5,"Future Trends Showcase","Present to an authentic panel; reflect on growth","Team pitches to faculty/industry/alumni panel; Q&A; 4D self-assessment vs. Meeting 1 baseline","Future Trends Challenge (capstone summative)"]
+];
+
+// Arc explorer
+const tabs=document.getElementById("tabs"),panel=document.getElementById("arcpanel");
+ARCS.forEach((a,i)=>{
+  const b=document.createElement("button");
+  b.textContent=(i+1)+". "+a.name;
+  b.onclick=()=>showArc(i);
+  tabs.appendChild(b);
+});
+function showArc(i){
+  const a=ARCS[i];
+  [...tabs.children].forEach((b,j)=>{b.classList.toggle("on",j===i);b.style.background=j===i?a.color:"";b.style.borderColor=j===i?a.color:"";});
+  panel.style.borderTopColor=a.color;
+  panel.innerHTML=`
+    <div class="arc-head"><h3 style="color:${a.color}">Arc ${i+1} — ${a.name}</h3><span style="color:var(--grey);font-weight:600">${a.range}</span></div>
+    <div><span class="pill">4D: ${a.fourD}</span><span class="pill">AILit: ${a.ailit}</span></div>
+    <p style="margin-top:12px">${a.over}</p>
+    <div class="arccols">
+      <div><h4>Essential Questions</h4><ul>${a.eqs.map(q=>`<li>${q}</li>`).join("")}</ul></div>
+      <div><h4>Students Will Be Able To</h4><ul>${a.objs.map(o=>`<li>${o}</li>`).join("")}</ul></div>
+    </div>
+    <div class="summ" style="border-left-color:${a.color}"><b>Summative:</b> ${a.summ}</div>`;
+}
+showArc(0);
+
+// Course map
+const legend=document.getElementById("legend"),wrap=document.getElementById("mapwrap");
+ARCS.forEach((a,i)=>{legend.innerHTML+=`<span><i style="background:${a.color}"></i>Arc ${i+1}: ${a.name}</span>`;});
+ARCS.forEach((a,ai)=>{
+  const band=document.createElement("div");band.className="arcband";
+  band.innerHTML=`<h3>Arc ${ai+1} — ${a.name} <span style="color:var(--grey);font-weight:400">(${a.range})</span></h3>`;
+  const g=document.createElement("div");g.className="mgrid";
+  MEETINGS.filter(m=>m[1]===ai).forEach(m=>{
+    const c=document.createElement("div");c.className="mcard";c.style.borderTopColor=a.color;
+    const isSumm=/summative|Showcase/i.test(m[2])||/summative/i.test(m[5]);
+    c.innerHTML=`<div class="n">M${m[0]}</div><div class="t">${m[2]}</div>${isSumm?'<div class="s">★ Summative</div>':""}`;
+    c.onclick=()=>openModal(m[0]-1);
+    g.appendChild(c);
+  });
+  band.appendChild(g);wrap.appendChild(band);
+});
+
+// Modal
+let cur=0;
+const ovl=document.getElementById("ovl");
+function openModal(i){
+  cur=(i+36)%36;
+  const m=MEETINGS[cur],a=ARCS[m[1]];
+  document.getElementById("m-n").textContent=`Meeting ${m[0]} · Arc ${m[1]+1} — ${a.name}`;
+  document.getElementById("m-n").style.color=a.color;
+  document.getElementById("m-t").textContent=m[2];
+  document.getElementById("m-o").textContent=m[3];
+  document.getElementById("m-a").textContent=m[4];
+  document.getElementById("m-c").textContent=m[5];
+  ovl.classList.add("show");
+}
+function closeModal(){ovl.classList.remove("show");}
+function step(d){openModal(cur+d);}
+ovl.addEventListener("click",e=>{if(e.target===ovl)closeModal();});
+document.addEventListener("keydown",e=>{
+  if(!ovl.classList.contains("show"))return;
+  if(e.key==="Escape")closeModal();
+  if(e.key==="ArrowRight")step(1);
+  if(e.key==="ArrowLeft")step(-1);
+});
+
+// Nav highlight
+const links=document.querySelectorAll("#topnav a");
+window.addEventListener("scroll",()=>{
+  let curId="";
+  document.querySelectorAll("main section").forEach(s=>{if(scrollY>=s.offsetTop-120)curId=s.id;});
+  links.forEach(l=>l.classList.toggle("active",l.getAttribute("href")==="#"+curId));
+});
+</script>
+</body>
+</html>
