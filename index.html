@@ -90,6 +90,59 @@
   td{border-top:1px solid var(--line);padding:10px 14px}
   tr:nth-child(even) td{background:var(--light)}
   footer{background:var(--navy-d);color:#c9d4e8;text-align:center;padding:30px 26px;font-size:.85rem;border-top:4px solid var(--gold)}
+  /* Minor headings */
+  h3.minor{font-family:"Lora",Georgia,serif;color:var(--navy);font-size:1.2rem;font-weight:600;margin:26px 0 6px}
+  /* Journey map */
+  .jmap{margin:20px 0 6px}
+  .jrow{display:flex;gap:5px;align-items:stretch}
+  .jseg{flex-grow:1;flex-basis:0;border-radius:10px;color:#fff;padding:11px 10px 9px;cursor:pointer;min-width:0;box-shadow:0 2px 8px rgba(27,58,107,.10);transition:transform .12s,box-shadow .12s}
+  .jseg:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(27,58,107,.20)}
+  .jseg .an{font-size:.64rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.85}
+  .jseg .at{font-size:.8rem;font-weight:700;line-height:1.25;margin-top:2px}
+  .jseg .am{font-size:.68rem;opacity:.85;margin-top:5px}
+  .jends{display:flex;justify-content:space-between;gap:12px;font-size:.74rem;color:var(--grey);margin-top:8px}
+  /* 4D icons */
+  .dcard .ic{width:36px;height:36px;display:block;margin-bottom:10px}
+  /* Modality spectrum */
+  .spec{margin:30px 0 4px}
+  .specends{display:flex;justify-content:space-between;font-size:.76rem;font-style:italic;color:var(--grey);padding:0 6px;margin-bottom:2px}
+  .specline{position:relative;height:34px}
+  .specline::before{content:"";position:absolute;left:5%;right:5%;top:14px;height:6px;border-radius:3px;background:linear-gradient(90deg,#E5CE7C,var(--gold),var(--navy))}
+  .specdots{display:grid;grid-template-columns:repeat(3,1fr);position:absolute;inset:0}
+  .specdots i{width:16px;height:16px;border-radius:50%;background:#fff;border:4px solid var(--navy);margin:9px auto 0;box-shadow:0 1px 4px rgba(27,58,107,.25)}
+  .specgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:6px}
+  @media(max-width:760px){.specgrid{grid-template-columns:1fr}.specline,.specends{display:none}}
+  /* Artifact mockups */
+  .artgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:18px;margin:20px 0}
+  .doc{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 3px 14px rgba(27,58,107,.09);overflow:hidden;display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s}
+  .doc:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(27,58,107,.14)}
+  .doc .bar{background:var(--navy);color:#fff;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:8px 13px;display:flex;justify-content:space-between;align-items:center}
+  .doc .bar i{width:8px;height:8px;border-radius:50%;background:var(--gold)}
+  .doc .body{padding:12px 14px;font-size:.8rem;flex:1}
+  .doc .row{display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line)}
+  .doc .row:last-child{border-bottom:none}
+  .doc .k{font-weight:800;color:var(--navy);min-width:78px;font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;padding-top:2px}
+  .doc .cap{background:var(--light);border-top:1px solid var(--line);padding:9px 14px;font-size:.75rem;color:var(--grey)}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .twocol h5{font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;color:var(--navy);margin-bottom:4px}
+  .twocol ul{list-style:none}
+  .twocol li{font-size:.76rem;padding:3px 0 3px 13px;position:relative}
+  .twocol li::before{content:"•";position:absolute;left:2px;color:var(--gold)}
+  .pslide{background:linear-gradient(135deg,var(--navy-d),var(--navy));color:#fff;border-radius:8px;padding:16px 14px;margin:2px 0 10px}
+  .pslide .pt{font-family:"Lora",Georgia,serif;font-size:.98rem;line-height:1.35}
+  .pslide .ps{font-size:.72rem;color:#d9e2f2;margin-top:6px}
+  .tagchip{display:inline-block;background:rgba(201,162,39,.16);color:var(--gold-d);border:1px solid rgba(201,162,39,.35);border-radius:999px;font-size:.64rem;font-weight:700;padding:2px 9px;margin:2px 4px 0 0}
+  /* Capstone spotlight */
+  .cap7{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:7px;margin:20px 0 4px}
+  .cstep{background:#fff;border:1px solid var(--line);border-top:3px solid var(--navy);border-radius:10px;padding:10px 8px;text-align:center;box-shadow:0 2px 8px rgba(27,58,107,.06)}
+  .cstep .m{font-size:.64rem;font-weight:800;color:var(--grey);letter-spacing:.06em}
+  .cstep .t{font-size:.76rem;font-weight:700;color:var(--navy);margin-top:3px;line-height:1.25}
+  .cstep.gate{border-top-color:var(--a5)}
+  .cstep.show{border-top-color:var(--gold);background:#FDF9EC}
+  .gatenote{font-size:.76rem;color:var(--grey);margin-bottom:4px}
+  .wbar{display:flex;height:40px;border-radius:10px;overflow:hidden;margin:14px 0 10px;box-shadow:0 2px 10px rgba(27,58,107,.09)}
+  .wbar div{display:flex;align-items:center;justify-content:center;color:#fff;font-size:.74rem;font-weight:700;text-align:center;padding:0 4px}
+  .wleg{display:flex;gap:16px;flex-wrap:wrap;font-size:.78rem;color:var(--grey)}
   footer a{color:#f0d787}
   /* Mobile */
   @media(max-width:640px){
@@ -119,6 +172,10 @@
     #mod h3{font-size:1.1rem;padding-right:30px}
     #mod .navbtns button{padding:10px 16px}
     .stds{padding:14px 16px}
+    .jrow{flex-direction:column}
+    .jseg{padding:10px 12px}
+    .jends{font-size:.68rem}
+    .wbar div{font-size:.62rem}
   }
 </style>
 </head>
@@ -137,7 +194,9 @@
   <a href="#overview">Overview</a>
   <a href="#framework">The Framework</a>
   <a href="#arcs">Arc Explorer</a>
+  <a href="#artifacts">Artifacts</a>
   <a href="#map">Course Map</a>
+  <a href="#capstone">Capstone</a>
   <a href="#assessment">Assessment</a>
 </nav>
 
@@ -147,21 +206,38 @@
   <p class="lead">This course invites students to explore artificial intelligence and the technologies shaping the future of work, society, and human interaction. Building on 9th-grade digital foundations, it develops <b>AI Fluency</b> — working with AI effectively, efficiently, ethically, and safely. Students open the black box of machine learning, design and red-team a simple AI agent, evaluate the 2026 technology landscape with evidence rather than hype, and build an authentic professional digital identity.</p>
   <p class="lead">The redesign consolidates twelve short units into <b>six deeper arcs</b>, threads Anthropic's AI Fluency framework through every one, and merges the two former culminating projects into a single seven-meeting capstone pitched to an authentic panel.</p>
   <p class="lead"><b>Lasallian connection:</b> grounded in the mission of faith and discovery, students learn to treat innovation as understanding and stewardship — enhancing the human experience with integrity, wisdom, and hope. The course's emphasis on Diligence is a direct expression of this mission.</p>
+  <h3 class="minor">The semester at a glance</h3>
+  <div class="jmap">
+    <div class="jrow">
+      <div class="jseg" style="background:var(--a1);flex-grow:5" onclick="jumpArc(0)"><div class="an">Arc 1 · M1–5</div><div class="at">Living in the Age of AI</div><div class="am">★ Tech &amp; Society Snapshot</div></div>
+      <div class="jseg" style="background:var(--a2);flex-grow:6" onclick="jumpArc(1)"><div class="an">Arc 2 · M6–11</div><div class="at">How AI Actually Works</div><div class="am">★ “Explain the Machine”</div></div>
+      <div class="jseg" style="background:var(--a3);flex-grow:6" onclick="jumpArc(2)"><div class="an">Arc 3 · M12–17</div><div class="at">Working with AI</div><div class="am">★ Agent Demo + Brief</div></div>
+      <div class="jseg" style="background:var(--a4);flex-grow:6" onclick="jumpArc(3)"><div class="an">Arc 4 · M18–23</div><div class="at">The 2026 Tech Landscape</div><div class="am">★ Emerging Tech Case Study</div></div>
+      <div class="jseg" style="background:var(--a5);flex-grow:6" onclick="jumpArc(4)"><div class="an">Arc 5 · M24–29</div><div class="at">Truth, Media &amp; Identity</div><div class="am">★ Digital Identity Package</div></div>
+      <div class="jseg" style="background:var(--a6);color:var(--navy-d);flex-grow:7" onclick="jumpArc(5)"><div class="an">Arc 6 · M30–36</div><div class="at">Future Trends Challenge</div><div class="am">★ Panel Showcase</div></div>
+    </div>
+    <div class="jends"><span>Meeting 1 — baseline: “How do you use AI now?”</span><span>Meeting 36 — showcase + growth self-assessment</span></div>
+  </div>
 </section>
 
 <section id="framework">
   <h2 class="sec">The Course Spine: AI Fluency</h2>
   <p class="lead">Four competencies for professional-grade human-AI collaboration, practiced in every arc and assessed directly in the capstone.</p>
   <div class="cards4">
-    <div class="dcard"><h3>Delegation</h3><p class="q">What should AI do — and what should stay human?</p><p>Task analysis, goal setting, deciding whether, when, and how to engage AI.</p></div>
-    <div class="dcard"><h3>Description</h3><p class="q">How do I communicate what I need?</p><p>Clear prompts, rich context, specified formats and constraints.</p></div>
-    <div class="dcard"><h3>Discernment</h3><p class="q">Is this output any good?</p><p>Evaluating accuracy, quality, bias, and fit; iterating deliberately.</p></div>
-    <div class="dcard"><h3>Diligence</h3><p class="q">Am I being responsible?</p><p>Verifying claims, disclosing AI use, protecting privacy, owning the product.</p></div>
+    <div class="dcard"><svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M12 21V11" stroke="#1B3A6B" stroke-width="2" stroke-linecap="round"/><path d="M12 11 5 5M5 5v5M5 5h5" stroke="#1B3A6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="m12 11 7-6M19 5v5M19 5h-5" stroke="#C9A227" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>Delegation</h3><p class="q">What should AI do — and what should stay human?</p><p>Task analysis, goal setting, deciding whether, when, and how to engage AI.</p></div>
+    <div class="dcard"><svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M4 5h16v11H9l-5 4V5z" stroke="#1B3A6B" stroke-width="2" stroke-linejoin="round"/><path d="M8 9h8M8 12h5" stroke="#C9A227" stroke-width="2" stroke-linecap="round"/></svg><h3>Description</h3><p class="q">How do I communicate what I need?</p><p>Clear prompts, rich context, specified formats and constraints.</p></div>
+    <div class="dcard"><svg class="ic" viewBox="0 0 24 24" fill="none"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z" stroke="#1B3A6B" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" stroke="#C9A227" stroke-width="2"/></svg><h3>Discernment</h3><p class="q">Is this output any good?</p><p>Evaluating accuracy, quality, bias, and fit; iterating deliberately.</p></div>
+    <div class="dcard"><svg class="ic" viewBox="0 0 24 24" fill="none"><path d="m12 3 7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6l7-3z" stroke="#1B3A6B" stroke-width="2" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="#C9A227" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>Diligence</h3><p class="q">Am I being responsible?</p><p>Verifying claims, disclosing AI use, protecting privacy, owning the product.</p></div>
   </div>
-  <div class="modal-row">
-    <div class="mode"><h4>Automation</h4><small>AI performs the task. Signature move: precise specification.</small></div>
-    <div class="mode"><h4>Augmentation</h4><small>Human and AI as thinking partners. Signature move: iterative dialogue.</small></div>
-    <div class="mode"><h4>Agency</h4><small>AI acts independently on your behalf — the defining shift of 2026. Signature move: guardrails and oversight.</small></div>
+  <h3 class="minor">Three modalities of human-AI interaction</h3>
+  <div class="spec">
+    <div class="specends"><span>Human drives every step</span><span>AI acts independently</span></div>
+    <div class="specline"><div class="specdots"><i style="border-color:#C9A227"></i><i style="border-color:#8A6D14"></i><i style="border-color:#1B3A6B"></i></div></div>
+    <div class="specgrid">
+      <div class="mode" style="border-left-color:#C9A227"><h4>Automation</h4><small>AI performs the task. Signature move: precise specification.</small></div>
+      <div class="mode" style="border-left-color:#8A6D14"><h4>Augmentation</h4><small>Human and AI as thinking partners. Signature move: iterative dialogue.</small></div>
+      <div class="mode"><h4>Agency</h4><small>AI acts independently on your behalf — the defining shift of 2026. Signature move: guardrails and oversight.</small></div>
+    </div>
   </div>
   <div class="stds">
     <b style="color:var(--navy)">Standards alignment</b>
@@ -180,11 +256,65 @@
   <div class="arcpanel" id="arcpanel"></div>
 </section>
 
+<section id="artifacts">
+  <h2 class="sec">The Work Students Produce</h2>
+  <p class="lead">AI fluency is graded through visible artifacts. Every arc leaves a paper trail — logs, charts, specs, and pitches that make the thinking, human and machine, inspectable.</p>
+  <div class="artgrid">
+    <div class="doc"><div class="bar"><span>AI Collaboration Log</span><i></i></div><div class="body">
+      <div class="row"><span class="k">Task</span><span>Summarize stakeholder interview notes</span></div>
+      <div class="row"><span class="k">Tool · Mode</span><span>Claude · Augmentation</span></div>
+      <div class="row"><span class="k">Kept</span><span>Theme structure; two quotes verified against the recording</span></div>
+      <div class="row"><span class="k">Changed</span><span>Rewrote conclusions — the model overstated certainty</span></div>
+    </div><div class="cap">Kept in every arc; graded for honesty, not polish.</div></div>
+    <div class="doc"><div class="bar"><span>Delegation Chart</span><i></i></div><div class="body twocol">
+      <div><h5>Stays human</h5><ul><li>Choosing the problem</li><li>Interviewing users</li><li>Final judgment calls</li></ul></div>
+      <div><h5>Delegated to AI</h5><ul><li>First-draft summaries</li><li>Data-viz iterations</li><li>Practice Q&amp;A drills</li></ul></div>
+    </div><div class="cap">Teams defend every split — in the Arc 3 brief and again in the capstone.</div></div>
+    <div class="doc"><div class="bar"><span>Agent Spec</span><i></i></div><div class="body">
+      <div class="row"><span class="k">Goal</span><span>Draft the weekly club newsletter from shared notes</span></div>
+      <div class="row"><span class="k">Tools</span><span>Docs access · calendar read-only</span></div>
+      <div class="row"><span class="k">Guardrails</span><span>Never sends; human approves; no student names</span></div>
+      <div class="row"><span class="k">Red-team</span><span>3 failure modes found · 2 fixed · 1 documented</span></div>
+    </div><div class="cap">Designed, built or simulated, and red-teamed in Arc 3.</div></div>
+    <div class="doc"><div class="bar"><span>Capstone Pitch</span><i></i></div><div class="body">
+      <div class="pslide"><div class="pt">Problem → Evidence → Solution → Responsibility → Ask</div><div class="ps">8-minute pitch + 4-minute Q&amp;A before a faculty, industry, and alumni panel.</div></div>
+      <span class="tagchip">Prototype</span><span class="tagchip">Data viz</span><span class="tagchip">Ethics review</span><span class="tagchip">Collab log</span><span class="tagchip">Delegation chart</span>
+    </div><div class="cap">Six graded deliverables converge at the Meeting 36 showcase.</div></div>
+  </div>
+</section>
+
 <section id="map">
   <h2 class="sec">Course Map — 36 Meetings</h2>
   <p class="lead">Click any meeting for its objective, anchor activity, and assessment check. Flex: at 37 meetings add a buffer before M23 or M36; at 35, merge M27–28.</p>
   <div class="maplegend" id="legend"></div>
   <div id="mapwrap"></div>
+</section>
+
+<section id="capstone">
+  <h2 class="sec">Capstone: The Future Trends Challenge</h2>
+  <p class="lead">Seven meetings, one team, one real problem — pitched to an authentic panel. The Meeting 32 ethics review is a hard gate: solutions revise until it passes.</p>
+  <div class="cap7">
+    <div class="cstep"><div class="m">M30</div><div class="t">Launch + team charter</div></div>
+    <div class="cstep"><div class="m">M31</div><div class="t">Research sprint</div></div>
+    <div class="cstep gate"><div class="m">M32</div><div class="t">Ethics review gate</div></div>
+    <div class="cstep"><div class="m">M33</div><div class="t">Build sprint</div></div>
+    <div class="cstep"><div class="m">M34</div><div class="t">Pitch craft</div></div>
+    <div class="cstep"><div class="m">M35</div><div class="t">Dress rehearsal</div></div>
+    <div class="cstep show"><div class="m">M36</div><div class="t">★ Showcase</div></div>
+  </div>
+  <h3 class="minor">How it's graded</h3>
+  <div class="wbar">
+    <div style="flex:30;background:var(--navy)">Solution 30%</div>
+    <div style="flex:20;background:var(--a5)">Ethics 20%</div>
+    <div style="flex:30;background:var(--gold);color:var(--navy-d)">AI Fluency 30%</div>
+    <div style="flex:20;background:var(--a4)">Pitch 20%</div>
+  </div>
+  <div class="wleg">
+    <span><b style="color:var(--navy)">Solution</b> — problem, evidence, design, prototype</span>
+    <span><b style="color:var(--a5)">Ethics</b> — stakeholders, bias, privacy, stewardship</span>
+    <span><b style="color:var(--gold-d)">AI Fluency</b> — all 4Ds via log + delegation chart</span>
+    <span><b style="color:var(--a4)">Pitch</b> — clarity, honesty, defense under questioning</span>
+  </div>
 </section>
 
 <section id="assessment">
@@ -319,6 +449,7 @@ function showArc(i){
     <div class="summ" style="border-left-color:${a.color}"><b>Summative:</b> ${a.summ}</div>`;
 }
 showArc(0);
+function jumpArc(i){showArc(i);document.getElementById("arcs").scrollIntoView({behavior:"smooth"});}
 
 // Course map
 const legend=document.getElementById("legend"),wrap=document.getElementById("mapwrap");
